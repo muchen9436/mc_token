@@ -5,7 +5,6 @@ FROM openjdk:8
 #RUN yum install -y java
 
 
-
 #put jar into container
 #ADD target/AdWordsProducer-1.0-SNAPSHOT-shaded.jar adwordsproducer.jar
 ADD target/*-jar-with-dependencies.jar target.jar

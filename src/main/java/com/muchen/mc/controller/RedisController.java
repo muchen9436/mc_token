@@ -18,7 +18,7 @@ import javax.annotation.Resource;
 @RequestMapping("/redis/")
 public class RedisController {
     @Resource
-    SaTokenDaoRedis saTokenDaoRedis;
+    private SaTokenDaoRedis saTokenDaoRedis;
 
     @RequestMapping("set")
     public SaResult set(String key, String value) {

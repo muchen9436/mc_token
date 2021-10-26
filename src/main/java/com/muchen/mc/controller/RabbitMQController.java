@@ -25,6 +25,7 @@ public class RabbitMQController {
     @RequestMapping("send")
     public SaResult send(@RequestBody TUser user) {
         mqMessageService.sendMessage(user);
+
         return SaResult.ok();
     }
 

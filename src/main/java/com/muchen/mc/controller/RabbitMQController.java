@@ -29,9 +29,22 @@ public class RabbitMQController {
         return SaResult.ok();
     }
 
+    @RequestMapping("send1")
+    public SaResult send1(@RequestBody TUser user) {
+        mqMessageService.sendMessage1(user);
+
+        return SaResult.ok();
+    }
+
     @RequestMapping("sendDelay")
     public SaResult sendDelay(@RequestBody TUser user) {
         mqMessageService.sendDelayMessage(user);
+        return SaResult.ok();
+    }
+
+    @RequestMapping("sendOverdue")
+    public SaResult sendOverdue(@RequestBody TUser user) {
+        mqMessageService.sendOverdue(user);
         return SaResult.ok();
     }
 }

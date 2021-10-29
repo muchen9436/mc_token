@@ -17,4 +17,8 @@ public interface MqMessageService {
     void sendDelayMessage(TUser msg);
 
     void sendMessage(TUser msg);
+
+    void sendMessage1(TUser msg);
+
+    void sendOverdue(TUser msg);
 }

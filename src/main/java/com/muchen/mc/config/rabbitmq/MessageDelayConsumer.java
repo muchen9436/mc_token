@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 * @author: lizz
 */
 @Component
-@RabbitListener(queues = "muchen_queue")
+@RabbitListener(queues = "delayQQ")
 @Slf4j
-public class MessageConsumer {
+public class MessageDelayConsumer {
 
     @RabbitHandler
     public void messageConsumer(TUser message){

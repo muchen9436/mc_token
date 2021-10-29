@@ -29,9 +29,9 @@ public class MqMessageServiceImpl implements MqMessageService {
         log.info("消息发送时间为: {}", sdf.format(new Date()));
         // 设置发送时间，开始发送
         try {
-            rabbitTemplate.convertAndSend("delay_exchange", "delay", msg,
+            rabbitTemplate.convertAndSend("delayC", "delay", msg,
                     message -> {
-                        message.getMessageProperties().setExpiration(String.valueOf(5000));
+                        message.getMessageProperties().setExpiration(String.valueOf(1000));
                         return message;
                     });
         } catch (AmqpException e) {
@@ -46,7 +46,33 @@ public class MqMessageServiceImpl implements MqMessageService {
         log.info("消息发送时间为: {}", sdf.format(new Date()));
         // 设置发送时间，开始发送
         try {
-            rabbitTemplate.convertAndSend("process_exchange", "delay", msg);
+            rabbitTemplate.convertAndSend("muchen_exchange", "muchen", msg);
+        } catch (AmqpException e) {
+            log.error("消息发送失败，请检查消息中间件是否正常");
+        }
+    }
+
+    @Override
+    public void sendMessage1(TUser msg) {
+        // 消息发送时间
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        log.info("消息发送时间为: {}", sdf.format(new Date()));
+        // 设置发送时间，开始发送
+        try {
+            rabbitTemplate.convertAndSend("muchen_exchange", "muchen1", msg);
+        } catch (AmqpException e) {
+            log.error("消息发送失败，请检查消息中间件是否正常");
+        }
+    }
+
+    @Override
+    public void sendOverdue(TUser msg) {
+        // 消息发送时间
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        log.info("消息发送时间为: {}", sdf.format(new Date()));
+        // 设置发送时间，开始发送
+        try {
+            rabbitTemplate.convertAndSend("muchen_exchange", "overdue", msg);
         } catch (AmqpException e) {
             log.error("消息发送失败，请检查消息中间件是否正常");
         }

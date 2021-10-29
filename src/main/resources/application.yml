@@ -5,10 +5,10 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://101.34.99.138:3316/muchen?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+    url: jdbc:mysql://mysql01:3306/muchen?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
 
   redis:
-    host: 101.34.99.138
+    host: redis01
     port: 6379
     password:
     database: 0
@@ -21,7 +21,7 @@ spring:
         min-idle: 0
     username: requirepass
   rabbitmq:
-    host: 101.34.99.138
+    host: rabbitmq01
     port: 5672
     username: admin
     password: admin

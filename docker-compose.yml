@@ -1,0 +1,45 @@
+version: '3.3'
+services:
+  mc-tonen:
+    build:
+      context: .
+      dockerfile: dockerfile
+    depends_on:
+      - redis
+      - mysql
+      - rabbitmq
+    ports:
+      - 8111:8081
+  redis:
+    container_name: redis01
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - /home/docker/redis/conf/redis.conf:/etc/redis/redis.conf
+      - /home/docker/redis/data:/data
+    privileged: true  #环境变量
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    #docker 重启后，容器自启动
+    restart: always
+  mysql:
+    container_name: mysql01
+    image: mysql:5.7
+    restart: always
+    volumes:
+      - /home/docker/mysql/data:/var/lib/mysql
+      - /home/docker/mysql/conf:/etc/mysql/conf.d
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+  rabbitmq:
+    container_name: rabbitmq01
+    image: rabbitmq:management
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    ports:
+      - 15672:15672
